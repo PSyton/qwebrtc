@@ -1,8 +1,8 @@
 #pragma once
 
 #include "qwebrtcquickvideoitem.hpp"
-#include <webrtc/common_video/video_render_frames.h>
-#include <webrtc/media/base/videosinkinterface.h>
+#include <common_video/video_render_frames.h>
+#include <api/videosinkinterface.h>
 #include "qwebrtcmediatrack_p.hpp"
 #include <mutex>
 

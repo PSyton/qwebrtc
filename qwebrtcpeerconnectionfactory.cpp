@@ -1,6 +1,12 @@
 #include <memory>
+
 #include <qwebrtcpeerconnectionfactory.hpp>
 #include <webrtc/api/peerconnectioninterface.h>
+#include <api/audio_codecs/builtin_audio_decoder_factory.h>
+#include <api/audio_codecs/builtin_audio_encoder_factory.h>
+#include "webrtc/media/engine/webrtcvideocapturerfactory.h"
+#include "webrtc/modules/video_capture/video_capture_factory.h"
+
 #include "qwebrtcpeerconnection_p.hpp"
 #include "qwebrtcpeerconnection.hpp"
 #include "qwebrtcmediatrack_p.hpp"
@@ -10,8 +16,7 @@
 #include "qwebrtcdatachannel.hpp"
 #include "qwebrtcdesktopvideosource_p.hpp"
 //#include <webrtc/sdk/objc/Framework/Classes/videotoolboxvideocodecfactory.h>
-#include "webrtc/media/engine/webrtcvideocapturerfactory.h"
-#include "webrtc/modules/video_capture/video_capture_factory.h"
+
 #include <QThread>
 #include <QCoreApplication>
 
@@ -65,7 +70,10 @@ QWebRTCPeerConnectionFactory::QWebRTCPeerConnectionFactory()
 
     m_impl->native_interface = webrtc::CreatePeerConnectionFactory(
                 m_impl->m_networkingThread.get(), m_impl->m_workerThread.get(), m_impl->m_signalingThread.get(),
-                nullptr, nullptr, nullptr/*encoder_factory, decoder_factory*/);
+                nullptr, /* default_adm */
+                webrtc::CreateBuiltinAudioEncoderFactory(),
+                webrtc::CreateBuiltinAudioDecoderFactory(),
+                nullptr, nullptr/*encoder_factory, decoder_factory*/);
 }
 
 QSharedPointer<QWebRTCMediaTrack> QWebRTCPeerConnectionFactory::createAudioTrack(const QVariantMap& constraints, const QString& label)
@@ -116,11 +124,14 @@ QSharedPointer<QWebRTCMediaTrack> QWebRTCPeerConnectionFactory::createVideoTrack
 
 QSharedPointer<QWebRTCMediaTrack> QWebRTCPeerConnectionFactory::createScreenCaptureTrack(const QString& label)
 {
+    /*
     auto videoSource = new rtc::RefCountedObject<QWebRTCDesktopVideoSource>();
     videoSource->moveToThread(QCoreApplication::instance()->thread());
     videoSource->Start();
     auto videoTrack = m_impl->native_interface->CreateVideoTrack(label.toStdString(), videoSource);
     return QSharedPointer<QWebRTCMediaTrack>(new QWebRTCMediaTrack_impl(videoTrack, videoSource));
+    * */
+    return QSharedPointer<QWebRTCMediaTrack>(); // Disabled because definitions for webrtc::DesktopCaptureOptions are missing??
 }
 
 QSharedPointer<QWebRTCMediaStream> QWebRTCPeerConnectionFactory::createMediaStream(const QString& label)

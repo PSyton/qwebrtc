@@ -1,6 +1,7 @@
 #include "qwebrtcdesktopvideosource_p.hpp"
 #include <webrtc/modules/desktop_capture/desktop_capture_options.h>
 #include <webrtc/common_video/libyuv/include/webrtc_libyuv.h>
+#include <libyuv/convert.h>
 #include <QDebug>
 
 int I420DataSize(int height, int stride_y, int stride_u, int stride_v)
@@ -55,9 +56,10 @@ void QWebRTCDesktopVideoSource::OnCaptureResult(webrtc::DesktopCapturer::Result 
                 //notifyObservers();
             }
 
-            webrtc::ConvertToI420(webrtc::VideoType::kARGB, frame->data(),
-                    0, 0, frame->size().width(), frame->size().height(),
-                    0, webrtc::VideoRotation::kVideoRotation_0, videoBuffer);
+// TODO: Fix this properly
+//            libyuv::ConvertToI420(videoBuffer, frame->data(),
+//                    0, 0, frame->size().width(), frame->size().height(),
+//                    0, webrtc::VideoRotation::kVideoRotation_0, webrtc::VideoType::kARGB);
             auto videoFrame = webrtc::VideoFrame(videoBuffer, webrtc::VideoRotation::kVideoRotation_0, rtc::TimeMicros());
 
             for (auto it=m_videoSinks.begin(); it!=m_videoSinks.end(); ++it) {

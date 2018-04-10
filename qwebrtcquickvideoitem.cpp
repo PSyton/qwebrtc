@@ -5,7 +5,7 @@
 #include <QSGTexture>
 #include <QOpenGLTexture>
 #include <QOpenGLContext>
-#include <webrtc/common_video/libyuv/include/webrtc_libyuv.h>
+#include <common_video/libyuv/include/webrtc_libyuv.h>
 #include <QMutex>
 #include <QElapsedTimer>
 
@@ -89,7 +89,7 @@ void VideoFrameTexture::newVideoFrame(QSharedPointer<webrtc::VideoFrame> frame)
     if (m_buffer.size() != bufferSize) {
         m_buffer.resize(bufferSize);
     }
-    webrtc::ConvertFromI420(*frame, webrtc::kBGRA, 0, m_buffer.data());
+    webrtc::ConvertFromI420(*frame, webrtc::VideoType::kBGRA, 0, m_buffer.data());
     glBindTexture(GL_TEXTURE_2D, m_texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);

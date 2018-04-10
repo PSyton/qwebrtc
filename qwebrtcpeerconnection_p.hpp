@@ -2,7 +2,6 @@
 
 #include <webrtc/api/peerconnectioninterface.h>
 #include <webrtc/api/jsep.h>
-#include <webrtc/base/refcount.h>
 #include <QList>
 #include <QVariantMap>
 #include "qwebrtcsessiondescription.hpp"

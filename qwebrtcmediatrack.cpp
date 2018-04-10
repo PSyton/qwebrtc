@@ -10,7 +10,7 @@ namespace QMediaTrackConstraints {
     const QString minHeight = (webrtc::MediaConstraintsInterface::kMinHeight);
     const QString maxFrameRate = (webrtc::MediaConstraintsInterface::kMaxFrameRate);
     const QString minFrameRate = (webrtc::MediaConstraintsInterface::kMinFrameRate);
-    const QString levelControl = (webrtc::MediaConstraintsInterface::kLevelControl);
+    const QString echoCancellation = (webrtc::MediaConstraintsInterface::kEchoCancellation);
 
     const QString valueTrue = (webrtc::MediaConstraintsInterface::kValueTrue);
     const QString valueFalse = (webrtc::MediaConstraintsInterface::kValueFalse);

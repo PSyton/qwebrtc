@@ -304,7 +304,7 @@ void QWebRTCPeerConnection_impl::OnSignalingChange(webrtc::PeerConnectionInterfa
 void QWebRTCPeerConnection_impl::OnAddStream(rtc::scoped_refptr<webrtc::MediaStreamInterface> stream) {
     auto qStream = QSharedPointer<QWebRTCMediaStream_impl>(new QWebRTCMediaStream_impl(stream));
     Q_EMIT q_ptr->streamAdded(qStream);
-    qDebug() << "Stream added " << QString::fromStdString(stream->label());
+    qDebug() << "Stream added " << QString::fromStdString(stream->id());
 }
 
 void QWebRTCPeerConnection_impl::OnRemoveStream(rtc::scoped_refptr<webrtc::MediaStreamInterface> stream)
