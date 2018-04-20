@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <QObject>
 #include <QSharedPointer>
 #include "qwebrtcsessiondescription.hpp"
