@@ -1,6 +1,6 @@
 #include "qwebrtcdesktopvideosource_p.hpp"
-#include <webrtc/modules/desktop_capture/desktop_capture_options.h>
-#include <webrtc/common_video/libyuv/include/webrtc_libyuv.h>
+#include <modules/desktop_capture/desktop_capture_options.h>
+#include <common_video/libyuv/include/webrtc_libyuv.h>
 #include <libyuv/convert.h>
 #include <QDebug>
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <webrtc/modules/desktop_capture/desktop_capturer.h>
+#include <modules/desktop_capture/desktop_capturer.h>
 #include <QTimer>
-#include <webrtc/api/video/i420_buffer.h>
-#include <webrtc/api/video/video_frame.h>
-#include <webrtc/api/mediastreaminterface.h>
+#include <api/video/i420_buffer.h>
+#include <api/video/video_frame.h>
+#include <api/mediastreaminterface.h>
 #include <QObject>
 
 class QWebRTCDesktopVideoSource: public QObject, public webrtc::VideoTrackSourceInterface,

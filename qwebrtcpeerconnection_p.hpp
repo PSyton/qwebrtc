@@ -1,7 +1,7 @@
 #pragma once
 
-#include <webrtc/api/peerconnectioninterface.h>
-#include <webrtc/api/jsep.h>
+#include <api/peerconnectioninterface.h>
+#include <api/jsep.h>
 #include <QList>
 #include <QVariantMap>
 #include "qwebrtcsessiondescription.hpp"

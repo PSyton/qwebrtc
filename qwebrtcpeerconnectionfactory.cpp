@@ -1,11 +1,11 @@
 #include <memory>
 
 #include <qwebrtcpeerconnectionfactory.hpp>
-#include <webrtc/api/peerconnectioninterface.h>
+#include <api/peerconnectioninterface.h>
 #include <api/audio_codecs/builtin_audio_decoder_factory.h>
 #include <api/audio_codecs/builtin_audio_encoder_factory.h>
-#include "webrtc/media/engine/webrtcvideocapturerfactory.h"
-#include "webrtc/modules/video_capture/video_capture_factory.h"
+#include "media/engine/webrtcvideocapturerfactory.h"
+#include "modules/video_capture/video_capture_factory.h"
 
 #include "qwebrtcpeerconnection_p.hpp"
 #include "qwebrtcpeerconnection.hpp"

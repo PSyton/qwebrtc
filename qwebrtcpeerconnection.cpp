@@ -5,15 +5,15 @@
 #include "qwebrtcdatachannel_p.hpp"
 #include "qwebrtctypes_p.hpp"
 #include "qwebrtcicecandidate.hpp"
-#include <webrtc/api/peerconnectioninterface.h>
-#include <webrtc/api/datachannelinterface.h>
-#include <webrtc/api/mediaconstraintsinterface.h>
-#include <webrtc/api/jsepicecandidate.h>
+#include <api/peerconnectioninterface.h>
+#include <api/datachannelinterface.h>
+#include <api/mediaconstraintsinterface.h>
+#include <api/jsepicecandidate.h>
 #include <QVariantMap>
 #include <QDebug>
 #include <assert.h>
 
-#include "webrtc/modules/video_capture/video_capture_factory.h"
+#include "modules/video_capture/video_capture_factory.h"
 
 void QWebRTCCreateSessionDescriptionObserver_p::OnSuccess(webrtc::SessionDescriptionInterface* desc)
 {

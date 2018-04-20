@@ -1,5 +1,5 @@
 #include "qwebrtcsessiondescription.hpp"
-#include <webrtc/api/jsep.h>
+#include <api/jsep.h>
 #include <QSharedPointer>
 
 class QWebRTCSessionDescription_impl {
