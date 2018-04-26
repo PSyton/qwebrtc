@@ -74,7 +74,7 @@ public:
     IceConnectionState iceConnectionState();
     IceGatheringState iceGatheringState();
 
-    ~QWebRTCPeerConnection();
+    virtual ~QWebRTCPeerConnection();
 Q_SIGNALS:
     void signalingChange();
     void iceConnectionStateChanged();

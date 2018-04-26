@@ -13,6 +13,7 @@ class QWebRTCConfiguration;
 class QWebRTCPeerConnectionFactory : public QObject {
 public:
     QWebRTCPeerConnectionFactory();
+    ~QWebRTCPeerConnectionFactory() = default;
 
     QSharedPointer<QWebRTCMediaTrack> createAudioTrack(const QVariantMap& constraints, const QString& trackId = QString());
 

@@ -13,6 +13,8 @@ public:
         Answer
     };
 
+    virtual ~QWebRTCSessionDescription() = default;
+
     virtual SDPType type() const = 0;
     virtual QByteArray sdp() const = 0;
     virtual bool isValid() const = 0;
