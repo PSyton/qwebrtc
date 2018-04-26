@@ -25,8 +25,7 @@ moc_headers = files(
     'qwebrtcquickvideoitem.hpp',
     'qwebrtcicecandidate.hpp',
     'qwebrtcconfiguration.hpp',
-    
-    #'qwebrtcdesktopvideosource_p.hpp',
+    'qwebrtcdesktopvideosource_p.hpp',
 )
 
 moc_files = qt5.preprocess(moc_headers: moc_headers)
@@ -42,7 +41,7 @@ sources = files(
     'qwebrtcutilities.cpp',
     'qwebrtcquickvideoitem.cpp',
     'qwebrtcicecandidate.cpp',
-    #'qwebrtcdesktopvideosource.cpp',
+    'qwebrtcdesktopvideosource.cpp',
 )
 
 qwebrtc = static_library('qwebrtc', moc_files, sources,
