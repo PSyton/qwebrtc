@@ -15,7 +15,7 @@
 #include "qwebrtcconfiguration.hpp"
 #include "qwebrtcdatachannel.hpp"
 #include "qwebrtcdesktopvideosource_p.hpp"
-//#include <webrtc/sdk/objc/Framework/Classes/videotoolboxvideocodecfactory.h>
+//#include <sdk/objc/Framework/Classes/videotoolboxvideocodecfactory.h>
 
 #include <QThread>
 #include <QCoreApplication>
