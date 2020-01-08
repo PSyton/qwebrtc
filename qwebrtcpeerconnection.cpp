@@ -5,10 +5,10 @@
 #include "qwebrtcdatachannel_p.hpp"
 #include "qwebrtctypes_p.hpp"
 #include "qwebrtcicecandidate.hpp"
-#include <api/peerconnectioninterface.h>
-#include <api/datachannelinterface.h>
-#include <api/mediaconstraintsinterface.h>
-#include <api/jsepicecandidate.h>
+#include <api/peer_connection_interface.h>
+#include <api/data_channel_interface.h>
+#include <api/media_constraints_interface.h>
+#include <api/jsep_ice_candidate.h>
 #include <QVariantMap>
 #include <QDebug>
 #include <assert.h>

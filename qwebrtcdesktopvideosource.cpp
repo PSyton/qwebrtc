@@ -3,6 +3,7 @@
 #include <common_video/libyuv/include/webrtc_libyuv.h>
 #include <libyuv/convert.h>
 #include <QDebug>
+#include <rtc_base/time_utils.h>
 
 int I420DataSize(int height, int stride_y, int stride_u, int stride_v)
 {
@@ -100,9 +101,9 @@ bool QWebRTCDesktopVideoSource::is_screencast() const
     return true;
 }
 
-rtc::Optional<bool> QWebRTCDesktopVideoSource::needs_denoising() const
+absl::optional<bool> QWebRTCDesktopVideoSource::needs_denoising() const
 {
-    return rtc::Optional<bool>(false);
+    return absl::optional<bool>(false);
 }
 
 bool QWebRTCDesktopVideoSource::GetStats(webrtc::VideoTrackSourceInterface::Stats* stats)

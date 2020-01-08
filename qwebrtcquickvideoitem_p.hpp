@@ -2,7 +2,7 @@
 
 #include "qwebrtcquickvideoitem.hpp"
 #include <common_video/video_render_frames.h>
-#include <api/videosinkinterface.h>
+#include <api/video/video_sink_interface.h>
 #include "qwebrtcmediatrack_p.hpp"
 #include <mutex>
 

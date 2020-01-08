@@ -4,7 +4,8 @@
 #include <QTimer>
 #include <api/video/i420_buffer.h>
 #include <api/video/video_frame.h>
-#include <api/mediastreaminterface.h>
+#include <api/media_stream_interface.h>
+#include <absl/types/optional.h>
 #include <QObject>
 
 class QWebRTCDesktopVideoSource: public QObject, public webrtc::VideoTrackSourceInterface,
@@ -22,7 +23,7 @@ public:
 
     virtual bool is_screencast() const override;
 
-    virtual rtc::Optional<bool> needs_denoising() const override;
+    virtual absl::optional<bool> needs_denoising() const override;
 
     virtual bool GetStats(Stats* stats) override;
 

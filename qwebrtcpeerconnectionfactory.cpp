@@ -1,10 +1,15 @@
 #include <memory>
 
-#include <qwebrtcpeerconnectionfactory.hpp>
-#include <api/peerconnectioninterface.h>
+#include "qwebrtcpeerconnectionfactory.hpp"
+
+#include <api/peer_connection_interface.h>
 #include <api/audio_codecs/builtin_audio_decoder_factory.h>
 #include <api/audio_codecs/builtin_audio_encoder_factory.h>
-#include "media/engine/webrtcvideocapturerfactory.h"
+//#include "media/engine/webrtc_video_capturer_factory.h"
+#include "modules/video_capture/video_capture_factory.h"
+#include "api/create_peerconnection_factory.h"
+#include "media/base/device.h"
+#include "media/base/video_capturer.h"
 #include "modules/video_capture/video_capture_factory.h"
 
 #include "qwebrtcpeerconnection_p.hpp"
@@ -69,19 +74,36 @@ QWebRTCPeerConnectionFactory::QWebRTCPeerConnectionFactory()
     //const auto decoder_factory = new webrtc::VideoToolboxVideoDecoderFactory();
 
     m_impl->native_interface = webrtc::CreatePeerConnectionFactory(
-                m_impl->m_networkingThread.get(), m_impl->m_workerThread.get(), m_impl->m_signalingThread.get(),
+                m_impl->m_networkingThread.get(),
+                m_impl->m_workerThread.get(),
+                m_impl->m_signalingThread.get(),
                 nullptr, /* default_adm */
                 webrtc::CreateBuiltinAudioEncoderFactory(),
                 webrtc::CreateBuiltinAudioDecoderFactory(),
-                nullptr, nullptr/*encoder_factory, decoder_factory*/);
+                nullptr, /*encoder_factory*/
+                nullptr, /*decoder_factory*/
+                nullptr, /*audio_mixer*/
+                nullptr /*audio_processing*/);
 }
 
 QSharedPointer<QWebRTCMediaTrack> QWebRTCPeerConnectionFactory::createAudioTrack(const QVariantMap& constraints, const QString& label)
 {
-    auto audioSource = m_impl->native_interface->CreateAudioSource(0);
+    auto audioOptions = cricket::AudioOptions();
+    auto audioSource = m_impl->native_interface->CreateAudioSource(audioOptions);
     auto audioTrack = m_impl->native_interface->CreateAudioTrack(label.toStdString(), audioSource);
     return QSharedPointer<QWebRTCMediaTrack>(new QWebRTCMediaTrack_impl(audioTrack));
 }
+
+std::unique_ptr<cricket::VideoCapturer> CreateVideoDeviceCapturer(const cricket::Device& device)
+{
+  std::unique_ptr<cricket::VideoCapturer> capturer(new cricket::VideoCapturer());
+  if (!capturer->Init(device)) {
+    return std::unique_ptr<cricket::VideoCapturer>();
+  }
+  return std::move(capturer);
+}
+
+//TODO: Need to create own VideoCapturer class
 
 QSharedPointer<QWebRTCMediaTrack> QWebRTCPeerConnectionFactory::createVideoTrack(const QVariantMap& constraints, const QString& label)
 {
@@ -104,11 +126,13 @@ QSharedPointer<QWebRTCMediaTrack> QWebRTCPeerConnectionFactory::createVideoTrack
         }
     }
 
-    cricket::WebRtcVideoDeviceCapturerFactory factory;
-    std::unique_ptr<cricket::VideoCapturer> capturer;
+    //cricket::WebRtcVideoDeviceCapturerFactory factory;
+    //std::unique_ptr<cricket::WebRtcVideoCapturer> capturer;
+    std::unique_ptr<cricket::VideoCapturer> capturer
     for (const auto& name : device_names) {
         capturer = factory.Create(cricket::Device(name, 0));
-        if (capturer) {
+        //capturer = CreateVideoDeviceCapturer(cricket::Device(name, 0));
+        if (!capturer) {
             break;
         }
     }

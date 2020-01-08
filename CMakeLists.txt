@@ -53,14 +53,19 @@ if(ENABLE_UBSAN)
     endif()
 endif()
 
-include_directories(
-    "${CMAKE_CURRENT_BINARY_DIR}/webrtc/src/"
-)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(WEBRTCROOT "${CMAKE_CURRENT_BINARY_DIR}/webrtc")
 
 find_path(WebRTCOutDir webrtc
-    HINTS "${CMAKE_CURRENT_BINARY_DIR}/webrtc/src/out/Default/obj"
+    HINTS "${WEBRTCROOT}/src/out/Default/obj"
     PATH_SUFFIXES webrtc)
+
+include_directories(
+    "${WEBRTCROOT}/src/"
+    "${WEBRTCROOT}/src/third_party/jsoncpp/source/include"
+    "${WEBRTCROOT}/src/third_party/libyuv/include"
+    "${WEBRTCROOT}/src/third_party/abseil-cpp"
+)
 
 find_package(Qt5 COMPONENTS Core Widgets Quick)
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "qwebrtcdatachannel.hpp"
-#include "api/datachannelinterface.h"
+#include "api/data_channel_interface.h"
 
 class QWebRTCDataChannel_impl : public QWebRTCDataChannel, public webrtc::DataChannelObserver {
     Q_OBJECT

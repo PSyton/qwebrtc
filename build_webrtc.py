@@ -35,7 +35,7 @@ if not os.path.exists(webrtc_dir):
         exit(r)
 
     os.chdir(webrtc_src_dir)
-    r = subprocess.call("git checkout branch-heads/59", shell=True)
+    r = subprocess.call("git checkout branch-heads/m73", shell=True)
     if r != 0:
         exit(r)
     r = subprocess.call("gclient sync --shallow", shell=True)

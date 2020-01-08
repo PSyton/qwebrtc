@@ -1,5 +1,5 @@
 #include "qwebrtcmediatrack_p.hpp"
-#include "api/mediaconstraintsinterface.h"
+#include "api/media_constraints_interface.h"
 
 namespace QMediaTrackConstraints {
     const QString minAspectRatio = (webrtc::MediaConstraintsInterface::kMinAspectRatio);
