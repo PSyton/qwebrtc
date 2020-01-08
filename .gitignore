@@ -1,1 +1,9 @@
 .DS_STORE
+.vscode
+CMakeCache.txt
+CMakeFiles/**
+QWebRTC_autogen/**
+webrtc/**
+.ninja_*
+*.ninja
+cmake_install.cmake
